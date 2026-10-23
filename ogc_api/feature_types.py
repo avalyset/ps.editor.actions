@@ -31,10 +31,21 @@ _GEOJSON_GEOMETRY_NAMES = {
 }
 
 
+# Uten dette svarer blant annet pygeoapi med HTML-siden, siden requests sender
+# "Accept: */*" og URL-ene vi bygger ikke har "?f=json". */* til slutt lar
+# tjenester som bare har GML/XSD-skjema fortsatt svare med det.
+_ACCEPT_HEADERS = {
+    "Accept": (
+        "application/json, application/geo+json;q=0.9, "
+        "application/schema+json;q=0.9, */*;q=0.1"
+    )
+}
+
+
 def _default_http_get(url: str) -> Any:
     if requests is None:  # pragma: no cover - defensive, requests should be available
         raise RuntimeError("The 'requests' library is required to fetch data.")
-    return requests.get(url, timeout=30)
+    return requests.get(url, timeout=30, headers=_ACCEPT_HEADERS)
 
 
 def _build_http_get_with_auth(username: str, password: str) -> HTTPGet:
@@ -43,7 +54,9 @@ def _build_http_get_with_auth(username: str, password: str) -> HTTPGet:
         raise RuntimeError("The 'requests' library is required to fetch data.")
 
     def _get(url: str) -> Any:
-        return requests.get(url, timeout=30, auth=(username, password))
+        return requests.get(
+            url, timeout=30, auth=(username, password), headers=_ACCEPT_HEADERS
+        )
 
     return _get
 
