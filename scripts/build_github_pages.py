@@ -244,6 +244,24 @@ _HTML_TEMPLATE = Template(
         overflow-wrap: break-word;
       }
 
+      .article-content .feature-attribute-table {
+        table-layout: fixed;
+      }
+
+      .article-content .feature-attribute-table td {
+        vertical-align: top;
+      }
+
+      .article-content .feature-attribute-table thead th {
+        background: var(--ds-color-surface-subtle, #f3f4f6);
+      }
+
+      /* Supertypen egenskapene under er arvet fra, som i Geonorges objektkatalog. */
+      .article-content .feature-attribute-table tr.inherited-from th {
+        background: var(--ds-color-neutral-surface-active, #d1d5db);
+        font-weight: 600;
+      }
+
       .article-content blockquote {
         background: var(--ds-color-surface-subtle, #f3f4f6);
         border: 1px solid var(--ds-color-border-subtle, #e5e7eb);

@@ -39,11 +39,16 @@ def render_feature_types_to_markdown(
     heading_level = max(1, int(heading_level))
     heading_prefix = "#" * heading_level
 
-    sections: list[str] = []
+    by_name: dict[str, Mapping[str, Any]] = {}
     for feature_type in feature_types:
         if not isinstance(feature_type, Mapping):
             raise TypeError("Each feature type entry must be a mapping")
+        type_name = str(feature_type.get("name", "")).strip()
+        if type_name and type_name not in by_name:
+            by_name[type_name] = feature_type
 
+    sections: list[str] = []
+    for feature_type in feature_types:
         if _is_external(feature_type):
             continue
 
@@ -71,16 +76,9 @@ def render_feature_types_to_markdown(
                 section_lines.append("")
                 section_lines.append(_linkify_html(paragraph))
 
-        attributes_obj = feature_type.get("attributes")
-        attributes: Sequence[Mapping[str, Any]] | None = None
-        if isinstance(attributes_obj, Sequence) and not isinstance(attributes_obj, (str, bytes)):
-            attributes = [
-                attribute
-                for attribute in attributes_obj
-                if isinstance(attribute, Mapping)
-            ]
+        own_attributes, inherited_groups = _effective_attribute_groups(feature_type, by_name)
 
-        flattened = _flatten_attributes(attributes)
+        flattened = _flatten_attributes(own_attributes)
         flattened = _inject_geometry_rows(
             flattened,
             geometry_obj if isinstance(geometry_obj, Mapping) else None,
@@ -95,8 +93,21 @@ def render_feature_types_to_markdown(
         ):
             flattened.insert(0, geometry_attribute)
 
+        groups: list[tuple[str | None, list[dict[str, Any]]]] = [(None, flattened)]
+        for owner, attributes in inherited_groups:
+            groups.append(
+                (
+                    owner,
+                    _inject_geometry_rows(
+                        _flatten_attributes(attributes),
+                        None,
+                        include_descriptions=include_descriptions,
+                    ),
+                )
+            )
+
         section_lines.append("")
-        section_lines.extend(_build_table(flattened, include_descriptions=include_descriptions))
+        section_lines.extend(_build_table(groups, include_descriptions=include_descriptions))
 
         relationship_lines = _build_relationships(feature_type.get("relationships"))
         if relationship_lines:
@@ -119,6 +130,60 @@ def render_feature_types_to_markdown(
     if output:
         return f"{output}\n\n{codelists_heading}\n\n{codelists_body}"
     return f"{codelists_heading}\n\n{codelists_body}"
+
+
+def _attribute_list(value: Any) -> list[Mapping[str, Any]]:
+    if not isinstance(value, Sequence) or isinstance(value, (str, bytes)):
+        return []
+    return [entry for entry in value if isinstance(entry, Mapping)]
+
+
+def _effective_attribute_groups(
+    feature_type: Mapping[str, Any],
+    by_name: Mapping[str, Mapping[str, Any]],
+) -> tuple[list[Mapping[str, Any]], list[tuple[str, list[Mapping[str, Any]]]]]:
+    """Egne attributter, og de arvede gruppert per supertype.
+
+    Supertypene hentes via `relationships.inheritance`, naermeste foerst, slik
+    objektkatalogen paa Geonorge viser dem. En egenskap som er redefinert lenger
+    ned i hierarkiet skjuler supertypens versjon.
+    """
+    own = _attribute_list(feature_type.get("attributes"))
+    seen_names = {str(attr.get("name", "")).strip() for attr in own}
+    groups: list[tuple[str, list[Mapping[str, Any]]]] = []
+
+    visited = {str(feature_type.get("name", "")).strip()}
+    queue = list(_supertype_names(feature_type))
+    while queue:
+        parent_name = queue.pop(0)
+        if parent_name in visited:
+            continue
+        visited.add(parent_name)
+        parent = by_name.get(parent_name)
+        if parent is None:
+            continue
+        inherited: list[Mapping[str, Any]] = []
+        for attribute in _attribute_list(parent.get("attributes")):
+            name = str(attribute.get("name", "")).strip()
+            if name and name in seen_names:
+                continue
+            seen_names.add(name)
+            inherited.append(attribute)
+        if inherited:
+            groups.append((parent_name, inherited))
+        queue.extend(_supertype_names(parent))
+
+    return own, groups
+
+
+def _supertype_names(feature_type: Mapping[str, Any]) -> list[str]:
+    relationships = feature_type.get("relationships")
+    if not isinstance(relationships, Mapping):
+        return []
+    inheritance = relationships.get("inheritance")
+    if not isinstance(inheritance, Sequence) or isinstance(inheritance, (str, bytes)):
+        return []
+    return [str(entry).strip() for entry in inheritance if str(entry).strip()]
 
 
 def _is_external(feature_type: Any) -> bool:
@@ -482,6 +547,7 @@ def _inject_geometry_rows(
 
             if entry.get("ogcRole") == "primary-geometry":
                 entry["name"] = "geometry"
+                entry["label"] = "geometry"
                 if metadata_description:
                     entry["description"] = metadata_description
                 if primary_index is None:
@@ -541,6 +607,7 @@ def _flatten_attributes(
     attributes: Sequence[Mapping[str, Any]] | None,
     *,
     prefix: str = "",
+    depth: int = 0,
 ) -> list[dict[str, Any]]:
     flattened: list[dict[str, Any]] = []
     if not attributes:
@@ -560,6 +627,10 @@ def _flatten_attributes(
             "description": attribute.get("description"),
             "ogcRole": attribute.get("ogcRole"),
             "cardinality": attribute.get("cardinality"),
+            # The table shows the leaf name indented by depth, as the Geonorge
+            # object catalogue does; "name" keeps the dotted path.
+            "label": name,
+            "depth": depth,
         }
         value_domain = attribute.get("valueDomain")
         if isinstance(value_domain, Mapping):
@@ -567,11 +638,13 @@ def _flatten_attributes(
         flattened.append(entry)
 
         nested = attribute.get("attributes")
-        if isinstance(nested, Sequence) and not isinstance(nested, (str, bytes)):
+        if isinstance(nested, Sequence) and not isinstance(nested, (str, bytes)) and nested:
+            entry["isDataType"] = True
             flattened.extend(
                 _flatten_attributes(
                     [item for item in nested if isinstance(item, Mapping)],
                     prefix=full_name or prefix,
+                    depth=depth + 1,
                 )
             )
 
@@ -631,91 +704,96 @@ def _build_geometry_attribute(geometry: Any) -> dict[str, Any] | None:
     return attribute
 
 
+def _type_kind(entry: Mapping[str, Any]) -> str:
+    value_domain = entry.get("valueDomain")
+    if isinstance(value_domain, Mapping):
+        kind = str(value_domain.get("kind", "")).strip().lower()
+        if kind == "enumeration" or (not kind and value_domain.get("listedValues")):
+            return "enumerering"
+        return "kodeliste"
+    if entry.get("isDataType"):
+        return "datatype"
+    return ""
+
+
 def _build_table(
-    attributes: list[dict[str, Any]],
+    groups: Sequence[tuple[str | None, list[dict[str, Any]]]],
     *,
     include_descriptions: bool,
 ) -> list[str]:
-    processed_rows: list[dict[str, str]] = []
+    """Alle egenskaper for en objekttype i én tabell, som i Geonorges objektkatalog.
 
-    for entry in attributes:
-        name = _escape_html(entry.get("name", ""))
-        type_ = _escape_html(entry.get("type", ""))
+    ``groups`` er objekttypens egne egenskaper (eier ``None``) etterfulgt av de
+    arvede, gruppert per supertype. Hver supertype faar en egen overskriftsrad.
+    """
+    if not any(rows for _, rows in groups):
+        return ["Egenskaper", "", "(ingen)"]
 
-        cardinality_value = entry.get("cardinality")
-        if isinstance(cardinality_value, str):
-            cardinality_text = cardinality_value.strip()
-        elif cardinality_value is None:
-            cardinality_text = ""
-        else:
-            cardinality_text = str(cardinality_value).strip()
+    lines = [
+        "Egenskaper",
+        "",
+        '<table class="feature-attribute-table">',
+        "  <colgroup>",
+        '    <col style="width: 22%;" />',
+        '    <col style="width: 48%;" />',
+        '    <col style="width: 20%;" />',
+        '    <col style="width: 10%;" />',
+        "  </colgroup>",
+        "  <thead>",
+        "    <tr>",
+        "      <th>Egenskap</th>",
+        "      <th>Beskrivelse</th>",
+        "      <th>Type</th>",
+        "      <th>Multiplisitet</th>",
+        "    </tr>",
+        "  </thead>",
+        "  <tbody>",
+    ]
 
-        description_value = entry.get("description")
-        description_cell = ""
-        if include_descriptions and isinstance(description_value, str):
-            normalized = _normalize_text(description_value)
-            if normalized:
-                description_cell = normalized
-
-        value_domain_text = _format_listed_values(entry.get("valueDomain"))
-
-        ogc_role = entry.get("ogcRole")
-
-        processed_rows.append(
-            {
-                "name": name,
-                "type": type_,
-                "cardinality": _escape_html(cardinality_text),
-                "description": _escape_html(description_cell, preserve_breaks=True),
-                "value_domain": _escape_html(value_domain_text, preserve_breaks=True),
-                "ogc_role": _escape_html(
-                    str(ogc_role).strip() if ogc_role is not None else ""
-                ),
-            }
-        )
-
-    lines = ["Egenskaper"]
-
-    if not processed_rows:
-        lines.append("")
-        lines.append("(ingen)")
-        return lines
-
-    for row in processed_rows:
-        lines.append("")
-        lines.append('<table class="feature-attribute-table">')
-        lines.append("  <colgroup>")
-        lines.append('    <col style="width: 35%;" />')
-        lines.append('    <col style="width: 65%;" />')
-        lines.append("  </colgroup>")
-        lines.append("  <tbody>")
-
-        name_value = row["name"]
-        strong_value = f"<strong>{name_value}</strong>" if name_value else ""
-        lines.append("    <tr>")
-        lines.append('      <th scope="row">Navn:</th>')
-        lines.append(f"      <td>{strong_value}</td>")
-        lines.append("    </tr>")
-
-        field_rows = [
-            ("Definisjon:", row["description"]),
-            ("Multiplisitet:", row["cardinality"]),
-            ("Type:", row["type"]),
-            ("Tillatte verdier:", row["value_domain"]),
-            ("OGC-rolle:", row["ogc_role"]),
-        ]
-
-        for label, value in field_rows:
-            if not value:
-                continue
-            lines.append("    <tr>")
-            lines.append(f"      <th scope=\"row\">{label}</th>")
-            lines.append(f"      <td>{value}</td>")
+    for owner, rows in groups:
+        if not rows:
+            continue
+        if owner:
+            lines.append('    <tr class="inherited-from">')
+            lines.append(
+                f'      <th colspan="4" scope="rowgroup">Arvet fra {_escape_html(owner)}</th>'
+            )
             lines.append("    </tr>")
 
-        lines.append("  </tbody>")
-        lines.append("</table>")
+        for entry in rows:
+            label = str(entry.get("label") or entry.get("name") or "").strip()
+            depth = entry.get("depth") if isinstance(entry.get("depth"), int) else 0
+            name_cell = "- " * depth + _escape_html(label)
 
+            description_cell = ""
+            description_value = entry.get("description")
+            if include_descriptions and isinstance(description_value, str):
+                description_cell = _escape_html(
+                    _normalize_text(description_value), preserve_breaks=True
+                )
+            ogc_role = entry.get("ogcRole")
+            if ogc_role is not None and str(ogc_role).strip():
+                role_text = f"OGC-rolle: {_escape_html(str(ogc_role))}"
+                description_cell = (
+                    f"{description_cell}<br />{role_text}" if description_cell else role_text
+                )
+
+            type_cell = _escape_html(entry.get("type", ""))
+            kind = _type_kind(entry)
+            if type_cell and kind:
+                type_cell = f"{type_cell}<br />({kind})"
+
+            cardinality_value = entry.get("cardinality")
+            cardinality_text = "" if cardinality_value is None else str(cardinality_value)
+
+            lines.append("    <tr>")
+            lines.append(f"      <td>{name_cell}</td>")
+            lines.append(f"      <td>{description_cell}</td>")
+            lines.append(f"      <td>{type_cell}</td>")
+            lines.append(f"      <td>{_escape_html(cardinality_text)}</td>")
+            lines.append("    </tr>")
+
+    lines.extend(["  </tbody>", "</table>"])
     return lines
 
 

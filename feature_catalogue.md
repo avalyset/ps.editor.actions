@@ -6,208 +6,133 @@ Egenskaper
 
 <table class="feature-attribute-table">
   <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
+    <col style="width: 22%;" />
+    <col style="width: 48%;" />
+    <col style="width: 20%;" />
+    <col style="width: 10%;" />
   </colgroup>
+  <thead>
+    <tr>
+      <th>Egenskap</th>
+      <th>Beskrivelse</th>
+      <th>Type</th>
+      <th>Multiplisitet</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>område</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>område</td>
       <td>den geografiske avgrensingen av stemmekretsen.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>GM_MultiSurface</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>GM_MultiSurface</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>administrativEnhetNavn</td>
       <td>offisielt navn på en kommune, et fylke eller en nasjon</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>AdministrativEnhetNavn<br />(datatype)</td>
       <td>1..*</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>AdministrativEnhetNavn</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn.navn</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- navn</td>
       <td>navnet på den administrative enheten i angitt språk.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>CharacterString</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>CharacterString</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn.språk</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- språk</td>
       <td>angir språk for det administrative navnet.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>Språkkode<br />(kodeliste)</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>Språkkode</td>
-    </tr>
-    <tr>
-      <th scope="row">Tillatte verdier:</th>
-      <td>- English<br />- KvenFinnish – Kven Finnish<br />- LuleSami – Lule Sami<br />- NorthernSami – Northern Sami<br />- Swedish<br />- Finnish<br />- Norwegian<br />- SouthernSami – Southern Sami</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn.rekkefølge</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- rekkefølge</td>
       <td>angir presentasjonsrekkefølge i sammenstaninger av nav på administretiv enhet ved presentasjon på alle sprøkformer.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>0..1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>Integer</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>kommunenummer</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>nummerering av kommunen i henhold til Statistisk sentralbyrå sin offisielle liste<br /><br />Merknad: Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 siffer.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
-      <td>Kommunenummer</td>
-    </tr>
-    <tr>
-      <th scope="row">Tillatte verdier:</th>
-      <td>- Kodeliste: <a href="https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/kommunenummer">https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/kommunenummer</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>kommunenavn</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>Offisielt navn på en kommune. Merk: Hvis kommunen har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
-      <td>CharacterString</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>samiskForvaltningsområde</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>angir om kommunen er en del ac samisk forvaltningaområde</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
+      <td>kommunenummer</td>
+      <td>nummerering av kommunen i henhold til Statistisk sentralbyrå sin offisielle liste<br /><br />Merknad: Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med ledende null. Kommune benyttes for kopling mot en rekke andre registre som også benytter 4 siffer.</td>
+      <td>Kommunenummer<br />(kodeliste)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>kommunenavn</td>
+      <td>Offisielt navn på en kommune. Merk: Hvis kommunen har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng.</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>samiskForvaltningsområde</td>
+      <td>angir om kommunen er en del ac samisk forvaltningaområde</td>
       <td>Boolean</td>
+      <td>0..1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Objekt_flate</th>
+    </tr>
+    <tr>
+      <td>datafangstdato</td>
+      <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
+      <td>DateTime</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>datauttaksdato</td>
+      <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
+      <td>DateTime</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>opphav</td>
+      <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Fellesegenskaper</th>
+    </tr>
+    <tr>
+      <td>identifikasjon</td>
+      <td>unik identifikasjon av et objekt</td>
+      <td>Identifikasjon<br />(datatype)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- lokalId</td>
+      <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- navnerom</td>
+      <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- versjonId</td>
+      <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>oppdateringsdato</td>
+      <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
+      <td>DateTime</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>gyldigFra</td>
+      <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>gyldigTil</td>
+      <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
     </tr>
   </tbody>
 </table>
@@ -228,75 +153,82 @@ Egenskaper
 
 <table class="feature-attribute-table">
   <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
+    <col style="width: 22%;" />
+    <col style="width: 48%;" />
+    <col style="width: 20%;" />
+    <col style="width: 10%;" />
   </colgroup>
+  <thead>
+    <tr>
+      <th>Egenskap</th>
+      <th>Beskrivelse</th>
+      <th>Type</th>
+      <th>Multiplisitet</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>datafangstdato</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>datafangstdato</td>
       <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>DateTime</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>DateTime</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>datauttaksdato</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>datauttaksdato</td>
       <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>0..1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>DateTime</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>opphav</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
+      <td>opphav</td>
+      <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
       <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Fellesegenskaper</th>
+    </tr>
+    <tr>
+      <td>identifikasjon</td>
+      <td>unik identifikasjon av et objekt</td>
+      <td>Identifikasjon<br />(datatype)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- lokalId</td>
+      <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- navnerom</td>
+      <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- versjonId</td>
+      <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>oppdateringsdato</td>
+      <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
+      <td>DateTime</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>gyldigFra</td>
+      <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>gyldigTil</td>
+      <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
     </tr>
   </tbody>
 </table>
@@ -314,60 +246,115 @@ Egenskaper
 
 <table class="feature-attribute-table">
   <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
+    <col style="width: 22%;" />
+    <col style="width: 48%;" />
+    <col style="width: 20%;" />
+    <col style="width: 10%;" />
   </colgroup>
+  <thead>
+    <tr>
+      <th>Egenskap</th>
+      <th>Beskrivelse</th>
+      <th>Type</th>
+      <th>Multiplisitet</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>grense</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>grense</td>
       <td>Geometri for avgrensingslinjer</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>GM_Curve</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>avgrensningstype</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>angir type avgreisningslinje. Ulike objekter avgrenses av ulike typer grenser.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>TypeAvgrensning</td>
+      <td>avgrensningstype</td>
+      <td>angir type avgreisningslinje. Ulike objekter avgrenses av ulike typer grenser.</td>
+      <td>TypeAvgrensning<br />(kodeliste)</td>
+      <td>1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Objekt_grense</th>
     </tr>
     <tr>
-      <th scope="row">Tillatte verdier:</th>
-      <td>- Riksgrense – avgrensningen av nasjonen Norge på land mot andre nasjoner<br />- Territorialgrense – avgrensning i havet av statens suverenitetsområde, beregnet 12 nm (22 224 m) utenfor og parallelt med grunnlinjen<br />- AvtaltAvgrensningslinje – avtalt avgrensningslinje til havs basert på folkerettslig bindende avtaler
-
-Merknad:
-Avtalt avgrensningslinje vil normalt gjelde alle aktuelle former for kyststatsjurisdiksjon. Detaljene vil framgå av den aktuelle avgrensningsavtale.
-
-Merknad 2:
-Benyttes også som avgrensning av kontinentalsokkel i internasjonalt farvann, der flere stater kan framlegge dokumentasjon om rettigheter til sokkelen, men der statene har kommet til enighet om en avgrensningslinje.<br />- Kommunegrense – avgrensing av kommune<br />- Fylkesgrense – avgrensning av fylke<br />- Grunnkretsgrense – avgrensning av grunnkrets<br />- Delområdegrense – avgrensning av delområde<br />- Stemmekretsgrense – avgrensing av Stemmekrets</td>
+      <td>datafangstdato</td>
+      <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
+      <td>DateTime</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>kvalitet</td>
+      <td>beskrivelse av kvaliteten på stedfestingen</td>
+      <td>Posisjonskvalitet<br />(datatype)</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>- målemetode</td>
+      <td>metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss</td>
+      <td>Målemetode<br />(kodeliste)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- nøyaktighet</td>
+      <td>punktstandardavviket i grunnriss for punkter samt tverravvik for linjer<br /><br />Merknad:<br />Oppgitt i cm</td>
+      <td>Integer</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>datauttaksdato</td>
+      <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
+      <td>DateTime</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>opphav</td>
+      <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Fellesegenskaper</th>
+    </tr>
+    <tr>
+      <td>identifikasjon</td>
+      <td>unik identifikasjon av et objekt</td>
+      <td>Identifikasjon<br />(datatype)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- lokalId</td>
+      <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- navnerom</td>
+      <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- versjonId</td>
+      <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>oppdateringsdato</td>
+      <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
+      <td>DateTime</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>gyldigFra</td>
+      <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>gyldigTil</td>
+      <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
     </tr>
   </tbody>
 </table>
@@ -385,175 +372,61 @@ Egenskaper
 
 <table class="feature-attribute-table">
   <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
+    <col style="width: 22%;" />
+    <col style="width: 48%;" />
+    <col style="width: 20%;" />
+    <col style="width: 10%;" />
   </colgroup>
+  <thead>
+    <tr>
+      <th>Egenskap</th>
+      <th>Beskrivelse</th>
+      <th>Type</th>
+      <th>Multiplisitet</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>identifikasjon</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>identifikasjon</td>
       <td>unik identifikasjon av et objekt</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>Identifikasjon<br />(datatype)</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>Identifikasjon</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>identifikasjon.lokalId</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- lokalId</td>
       <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>CharacterString</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>CharacterString</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>identifikasjon.navnerom</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- navnerom</td>
       <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>CharacterString</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>CharacterString</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>identifikasjon.versjonId</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- versjonId</td>
       <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>CharacterString</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>CharacterString</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>oppdateringsdato</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>oppdateringsdato</td>
       <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>DateTime</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>DateTime</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>gyldigFra</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>gyldigFra</td>
       <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>Date</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>Date</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>gyldigTil</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>gyldigTil</td>
       <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>0..1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>Date</td>
+      <td>0..1</td>
     </tr>
   </tbody>
 </table>
@@ -566,154 +439,100 @@ Egenskaper
 
 <table class="feature-attribute-table">
   <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
+    <col style="width: 22%;" />
+    <col style="width: 48%;" />
+    <col style="width: 20%;" />
+    <col style="width: 10%;" />
   </colgroup>
+  <thead>
+    <tr>
+      <th>Egenskap</th>
+      <th>Beskrivelse</th>
+      <th>Type</th>
+      <th>Multiplisitet</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>datafangstdato</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>datafangstdato</td>
       <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>0..1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>DateTime</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>kvalitet</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>beskrivelse av kvaliteten på stedfestingen</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>Posisjonskvalitet</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>kvalitet.målemetode</strong></td>
+      <td>kvalitet</td>
+      <td>beskrivelse av kvaliteten på stedfestingen</td>
+      <td>Posisjonskvalitet<br />(datatype)</td>
+      <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- målemetode</td>
       <td>metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>Målemetode<br />(kodeliste)</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>Målemetode</td>
-    </tr>
-    <tr>
-      <th scope="row">Tillatte verdier:</th>
-      <td>- Kodeliste: <a href="https://register.geonorge.no/sosi-kodelister/generelle-konsepter/4.5/m%C3%A5lemetodekode">https://register.geonorge.no/sosi-kodelister/generelle-konsepter/4.5/m%C3%A5lemetodekode</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>kvalitet.nøyaktighet</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- nøyaktighet</td>
       <td>punktstandardavviket i grunnriss for punkter samt tverravvik for linjer<br /><br />Merknad:<br />Oppgitt i cm</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>0..1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>Integer</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>datauttaksdato</strong></td>
+      <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Definisjon:</th>
+      <td>datauttaksdato</td>
       <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>0..1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>DateTime</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>opphav</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
+      <td>opphav</td>
+      <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
       <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Fellesegenskaper</th>
+    </tr>
+    <tr>
+      <td>identifikasjon</td>
+      <td>unik identifikasjon av et objekt</td>
+      <td>Identifikasjon<br />(datatype)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- lokalId</td>
+      <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- navnerom</td>
+      <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- versjonId</td>
+      <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>oppdateringsdato</td>
+      <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
+      <td>DateTime</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>gyldigFra</td>
+      <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>gyldigTil</td>
+      <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
     </tr>
   </tbody>
 </table>
@@ -731,208 +550,133 @@ Egenskaper
 
 <table class="feature-attribute-table">
   <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
+    <col style="width: 22%;" />
+    <col style="width: 48%;" />
+    <col style="width: 20%;" />
+    <col style="width: 10%;" />
   </colgroup>
+  <thead>
+    <tr>
+      <th>Egenskap</th>
+      <th>Beskrivelse</th>
+      <th>Type</th>
+      <th>Multiplisitet</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>område</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>område</td>
       <td>den geografiske avgrensingen av stemmekretsen.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>GM_MultiSurface</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>GM_MultiSurface</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>administrativEnhetNavn</td>
       <td>offisielt navn på en kommune, et fylke eller en nasjon</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>AdministrativEnhetNavn<br />(datatype)</td>
       <td>1..*</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>AdministrativEnhetNavn</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn.navn</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- navn</td>
       <td>navnet på den administrative enheten i angitt språk.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>CharacterString</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>CharacterString</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn.språk</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- språk</td>
       <td>angir språk for det administrative navnet.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
+      <td>Språkkode<br />(kodeliste)</td>
       <td>1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
-      <td>Språkkode</td>
-    </tr>
-    <tr>
-      <th scope="row">Tillatte verdier:</th>
-      <td>- English<br />- KvenFinnish – Kven Finnish<br />- LuleSami – Lule Sami<br />- NorthernSami – Northern Sami<br />- Swedish<br />- Finnish<br />- Norwegian<br />- SouthernSami – Southern Sami</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>administrativEnhetNavn.rekkefølge</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
+      <td>- rekkefølge</td>
       <td>angir presentasjonsrekkefølge i sammenstaninger av nav på administretiv enhet ved presentasjon på alle sprøkformer.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>0..1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
       <td>Integer</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>fylkesnummer</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>nummerering av fylker i henhold til Statistisk sentralbyrå sin offisielle liste<br /><br />Merknad:<br />Det presiseres at fylkesnummer alltid skal ha 2 sifre, dvs. eventuelt med ledende null. Fylkesnummer benyttes for kopling mot en rekke andre registre som også benytter 2 sifre.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
-      <td>Fylkesnummer</td>
-    </tr>
-    <tr>
-      <th scope="row">Tillatte verdier:</th>
-      <td>- Kodeliste: <a href="https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/fylkesnummer">https://register.geonorge.no/sosi-kodelister/inndelinger/inndelingsbase/fylkesnummer</a>?</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>fylkesnavn</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>Offisielt navn på et fylke. Merk: Hvis fylket har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng.</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th scope="row">Type:</th>
-      <td>CharacterString</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 35%;" />
-    <col style="width: 65%;" />
-  </colgroup>
-  <tbody>
-    <tr>
-      <th scope="row">Navn:</th>
-      <td><strong>samiskForvaltningsområde</strong></td>
-    </tr>
-    <tr>
-      <th scope="row">Definisjon:</th>
-      <td>angir om fylket er en del ac samisk forvaltningaområde</td>
-    </tr>
-    <tr>
-      <th scope="row">Multiplisitet:</th>
       <td>0..1</td>
     </tr>
     <tr>
-      <th scope="row">Type:</th>
+      <td>fylkesnummer</td>
+      <td>nummerering av fylker i henhold til Statistisk sentralbyrå sin offisielle liste<br /><br />Merknad:<br />Det presiseres at fylkesnummer alltid skal ha 2 sifre, dvs. eventuelt med ledende null. Fylkesnummer benyttes for kopling mot en rekke andre registre som også benytter 2 sifre.</td>
+      <td>Fylkesnummer<br />(kodeliste)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>fylkesnavn</td>
+      <td>Offisielt navn på et fylke. Merk: Hvis fylket har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng.</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>samiskForvaltningsområde</td>
+      <td>angir om fylket er en del ac samisk forvaltningaområde</td>
       <td>Boolean</td>
+      <td>0..1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Objekt_flate</th>
+    </tr>
+    <tr>
+      <td>datafangstdato</td>
+      <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
+      <td>DateTime</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>datauttaksdato</td>
+      <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
+      <td>DateTime</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>opphav</td>
+      <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr class="inherited-from">
+      <th colspan="4" scope="rowgroup">Arvet fra SOSI_Fellesegenskaper</th>
+    </tr>
+    <tr>
+      <td>identifikasjon</td>
+      <td>unik identifikasjon av et objekt</td>
+      <td>Identifikasjon<br />(datatype)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- lokalId</td>
+      <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- navnerom</td>
+      <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
+      <td>CharacterString</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>- versjonId</td>
+      <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
+      <td>CharacterString</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>oppdateringsdato</td>
+      <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
+      <td>DateTime</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>gyldigFra</td>
+      <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
+    </tr>
+    <tr>
+      <td>gyldigTil</td>
+      <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
+      <td>Date</td>
+      <td>0..1</td>
     </tr>
   </tbody>
 </table>
