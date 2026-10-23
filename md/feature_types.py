@@ -22,6 +22,9 @@ _TAG_RE = re.compile(r"<[^>]+>")
 _HTML_BREAK_RE = re.compile(r"&lt;br\s*/?&gt;", re.IGNORECASE)
 _URL_RE = re.compile(r"(https?://[^\s<>()]+)", re.IGNORECASE)
 _TRAILING_PUNCTUATION = ".,:;!?)]"
+# Bruddpunkter i camelCase- og snake_case-navn, slik at lange egenskaps- og
+# typenavn brekker ved ordgrensene i stedet for aa gjoere tabellen for bred.
+_WORD_BOUNDARY_RE = re.compile(r"(?<=[a-zæøå0-9])(?=[A-ZÆØÅ])|(?<=_)(?=[^_])")
 
 
 def render_feature_types_to_markdown(
@@ -30,8 +33,15 @@ def render_feature_types_to_markdown(
     heading_level: int = 4,
     include_descriptions: bool = True,
     include_codelists: bool = False,
+    link_codelists: bool | None = None,
 ) -> str:
-    """Convert feature type metadata into Markdown tables."""
+    """Convert feature type metadata into Markdown tables.
+
+    ``link_codelists`` lenker kodeliste-typer i tabellen til kodelistens
+    overskrift. Standard er aa lenke naar kodelistene rendres i samme dokument.
+    """
+    if link_codelists is None:
+        link_codelists = include_codelists
 
     if not isinstance(feature_types, Sequence) or isinstance(feature_types, (str, bytes)):
         raise TypeError("feature_types must be a sequence of mappings")
@@ -107,7 +117,13 @@ def render_feature_types_to_markdown(
             )
 
         section_lines.append("")
-        section_lines.extend(_build_table(groups, include_descriptions=include_descriptions))
+        section_lines.extend(
+            _build_table(
+                groups,
+                include_descriptions=include_descriptions,
+                link_codelists=link_codelists,
+            )
+        )
 
         relationship_lines = _build_relationships(feature_type.get("relationships"))
         if relationship_lines:
@@ -324,8 +340,12 @@ def _render_codelists_section(
         definition = entry.get("definition")
         as_dictionary = entry.get("asDictionary")
 
-        stereotype = "Enumeration" if listed_values else "CodeList"
-        lines.append(f"{heading_prefix} «{stereotype}» {name}")
+        stereotype = "Enumeration" if _is_enumeration(entry.get("kind"), listed_values) else "CodeList"
+        # Anker inne i overskriften, ikke {#id}: det fungerer baade paa Pages og
+        # naar markdown-filen vises paa GitHub.
+        lines.append(
+            f'{heading_prefix} <a id="{_codelist_anchor(name)}"></a>«{stereotype}» {name}'
+        )
 
         if isinstance(definition, str) and definition.strip():
             lines.append("")
@@ -704,11 +724,19 @@ def _build_geometry_attribute(geometry: Any) -> dict[str, Any] | None:
     return attribute
 
 
+def _is_enumeration(kind: Any, listed_values: Any) -> bool:
+    """Stereotypen fra modellen avgjoer. Bare uten den gjetter vi ut fra om
+    verdiene er listet opp i modellen."""
+    kind_text = str(kind or "").strip().lower()
+    if kind_text:
+        return kind_text == "enumeration"
+    return bool(listed_values)
+
+
 def _type_kind(entry: Mapping[str, Any]) -> str:
     value_domain = entry.get("valueDomain")
     if isinstance(value_domain, Mapping):
-        kind = str(value_domain.get("kind", "")).strip().lower()
-        if kind == "enumeration" or (not kind and value_domain.get("listedValues")):
+        if _is_enumeration(value_domain.get("kind"), value_domain.get("listedValues")):
             return "enumerering"
         return "kodeliste"
     if entry.get("isDataType"):
@@ -720,6 +748,7 @@ def _build_table(
     groups: Sequence[tuple[str | None, list[dict[str, Any]]]],
     *,
     include_descriptions: bool,
+    link_codelists: bool = False,
 ) -> list[str]:
     """Alle egenskaper for en objekttype i én tabell, som i Geonorges objektkatalog.
 
@@ -733,12 +762,6 @@ def _build_table(
         "Egenskaper",
         "",
         '<table class="feature-attribute-table">',
-        "  <colgroup>",
-        '    <col style="width: 22%;" />',
-        '    <col style="width: 48%;" />',
-        '    <col style="width: 20%;" />',
-        '    <col style="width: 10%;" />',
-        "  </colgroup>",
         "  <thead>",
         "    <tr>",
         "      <th>Egenskap</th>",
@@ -763,7 +786,7 @@ def _build_table(
         for entry in rows:
             label = str(entry.get("label") or entry.get("name") or "").strip()
             depth = entry.get("depth") if isinstance(entry.get("depth"), int) else 0
-            name_cell = "- " * depth + _escape_html(label)
+            name_cell = "- " * depth + _with_word_breaks(_escape_html(label))
 
             description_cell = ""
             description_value = entry.get("description")
@@ -778,8 +801,11 @@ def _build_table(
                     f"{description_cell}<br />{role_text}" if description_cell else role_text
                 )
 
-            type_cell = _escape_html(entry.get("type", ""))
+            type_name = str(entry.get("type", "")).strip()
+            type_cell = _with_word_breaks(_escape_html(type_name))
             kind = _type_kind(entry)
+            if type_cell and link_codelists and kind in {"kodeliste", "enumerering"}:
+                type_cell = f'<a href="#{_codelist_anchor(type_name)}">{type_cell}</a>'
             if type_cell and kind:
                 type_cell = f"{type_cell}<br />({kind})"
 
@@ -795,6 +821,15 @@ def _build_table(
 
     lines.extend(["  </tbody>", "</table>"])
     return lines
+
+
+def _with_word_breaks(text: str) -> str:
+    return _WORD_BOUNDARY_RE.sub("<wbr />", text)
+
+
+def _codelist_anchor(name: str) -> str:
+    slug = re.sub(r"[^\w-]+", "-", name.strip().lower()).strip("-")
+    return f"kodeliste-{slug}"
 
 
 def _build_relationships(relationships: Any) -> list[str]:
@@ -885,7 +920,7 @@ def _render_markdown_section(
 ) -> str:
     section_heading = "### Objekttyper"
     body = render_feature_types_to_markdown(
-        feature_types, heading_level=4, include_codelists=False
+        feature_types, heading_level=4, include_codelists=False, link_codelists=True
     )
     codelists_body = _render_codelists_section(feature_types, heading_level=4)
 

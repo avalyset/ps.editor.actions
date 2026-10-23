@@ -16,6 +16,12 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 
+from contact_overrides import (  # noqa: E402
+    CONTACT_OVERRIDES_FILENAME,
+    format_contact,
+    load_contact_override,
+    resolve_specification_contact,
+)
 from md.product_specification import IncludeResource, render_template  # noqa: E402
 
 
@@ -147,6 +153,19 @@ def _augment_delivery_section(
     deliveries = list(existing) if isinstance(existing, list) else []
     deliveries.extend(extra)
     psdata["deliverySection"] = deliveries
+    psdata_path.write_text(json.dumps(psdata, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def _write_specification_contact(psdata_path: Path) -> None:
+    """Set ``specificationContact`` (Kontaktinformasjon under "Om spesifikasjonen").
+
+    Uses the manually entered contact from ``contact.overrides.json`` next to psdata
+    when it exists, otherwise the first contact from the Geonorge metadata.
+    """
+    psdata = json.loads(psdata_path.read_text(encoding="utf-8"))
+    override = load_contact_override(psdata_path.parent / CONTACT_OVERRIDES_FILENAME)
+    contact = resolve_specification_contact(psdata, override)
+    psdata["specificationContact"] = format_contact(contact)
     psdata_path.write_text(json.dumps(psdata, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
@@ -308,6 +327,10 @@ def assemble_product_specification(
     # Ord-antall per kapittel (Geonorge-metadata + datamodell) inn i psdata, så editoren
     # viser hvilke kapitler som allerede er fylt fra eksisterende info.
     _write_chapter_autofill(psdata_path, psdata_path.parent)
+
+    # Kontaktperson for spesifikasjonen: manuell overstyring fra web-editoren, ellers
+    # første kontakt fra Geonorge-metadata.
+    _write_specification_contact(psdata_path)
 
     psdata = json.loads(psdata_path.read_text(encoding="utf-8"))
 

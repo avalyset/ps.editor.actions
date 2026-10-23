@@ -244,16 +244,23 @@ _HTML_TEMPLATE = Template(
         overflow-wrap: break-word;
       }
 
-      .article-content .feature-attribute-table {
-        table-layout: fixed;
-      }
-
       .article-content .feature-attribute-table td {
         vertical-align: top;
       }
 
+      /* Lange URL-er i beskrivelsen skal brekke her, ikke tvinge navn og typer
+         i de andre kolonnene til aa deles midt i ordet. */
+      .article-content .feature-attribute-table td:nth-child(2) {
+        overflow-wrap: anywhere;
+      }
+
+      .article-content .feature-attribute-table thead th:nth-child(2) {
+        width: 45%;
+      }
+
       .article-content .feature-attribute-table thead th {
         background: var(--ds-color-surface-subtle, #f3f4f6);
+        white-space: nowrap;
       }
 
       /* Supertypen egenskapene under er arvet fra, som i Geonorges objektkatalog. */

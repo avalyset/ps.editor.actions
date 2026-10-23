@@ -5,12 +5,6 @@ inndeling i administrative og politiske enheter innenfor fylket<br /><br />Merkn
 Egenskaper
 
 <table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 22%;" />
-    <col style="width: 48%;" />
-    <col style="width: 20%;" />
-    <col style="width: 10%;" />
-  </colgroup>
   <thead>
     <tr>
       <th>Egenskap</th>
@@ -23,19 +17,19 @@ Egenskaper
     <tr>
       <td>område</td>
       <td>den geografiske avgrensingen av stemmekretsen.</td>
-      <td>GM_MultiSurface</td>
+      <td>GM_<wbr />Multi<wbr />Surface</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>administrativEnhetNavn</td>
+      <td>administrativ<wbr />Enhet<wbr />Navn</td>
       <td>offisielt navn på en kommune, et fylke eller en nasjon</td>
-      <td>AdministrativEnhetNavn<br />(datatype)</td>
+      <td>Administrativ<wbr />Enhet<wbr />Navn<br />(datatype)</td>
       <td>1..*</td>
     </tr>
     <tr>
       <td>- navn</td>
       <td>navnet på den administrative enheten i angitt språk.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
@@ -59,11 +53,11 @@ Egenskaper
     <tr>
       <td>kommunenavn</td>
       <td>Offisielt navn på en kommune. Merk: Hvis kommunen har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>samiskForvaltningsområde</td>
+      <td>samisk<wbr />Forvaltningsområde</td>
       <td>angir om kommunen er en del ac samisk forvaltningaområde</td>
       <td>Boolean</td>
       <td>0..1</td>
@@ -74,19 +68,19 @@ Egenskaper
     <tr>
       <td>datafangstdato</td>
       <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>datauttaksdato</td>
       <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>opphav</td>
       <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr class="inherited-from">
@@ -99,37 +93,37 @@ Egenskaper
       <td>1</td>
     </tr>
     <tr>
-      <td>- lokalId</td>
+      <td>- lokal<wbr />Id</td>
       <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
       <td>- navnerom</td>
       <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>- versjonId</td>
+      <td>- versjon<wbr />Id</td>
       <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>oppdateringsdato</td>
       <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>gyldigFra</td>
+      <td>gyldig<wbr />Fra</td>
       <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <td>gyldigTil</td>
+      <td>gyldig<wbr />Til</td>
       <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
@@ -152,12 +146,6 @@ abstrakt objekttype som bærer en rekke egenskaper som er fagområde-uavhengige 
 Egenskaper
 
 <table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 22%;" />
-    <col style="width: 48%;" />
-    <col style="width: 20%;" />
-    <col style="width: 10%;" />
-  </colgroup>
   <thead>
     <tr>
       <th>Egenskap</th>
@@ -170,19 +158,19 @@ Egenskaper
     <tr>
       <td>datafangstdato</td>
       <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>datauttaksdato</td>
       <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>opphav</td>
       <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr class="inherited-from">
@@ -195,37 +183,37 @@ Egenskaper
       <td>1</td>
     </tr>
     <tr>
-      <td>- lokalId</td>
+      <td>- lokal<wbr />Id</td>
       <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
       <td>- navnerom</td>
       <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>- versjonId</td>
+      <td>- versjon<wbr />Id</td>
       <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>oppdateringsdato</td>
       <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>gyldigFra</td>
+      <td>gyldig<wbr />Fra</td>
       <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <td>gyldigTil</td>
+      <td>gyldig<wbr />Til</td>
       <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
@@ -245,12 +233,6 @@ Generell avgrensingslinje
 Egenskaper
 
 <table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 22%;" />
-    <col style="width: 48%;" />
-    <col style="width: 20%;" />
-    <col style="width: 10%;" />
-  </colgroup>
   <thead>
     <tr>
       <th>Egenskap</th>
@@ -263,13 +245,13 @@ Egenskaper
     <tr>
       <td>grense</td>
       <td>Geometri for avgrensingslinjer</td>
-      <td>GM_Curve</td>
+      <td>GM_<wbr />Curve</td>
       <td>1</td>
     </tr>
     <tr>
       <td>avgrensningstype</td>
       <td>angir type avgreisningslinje. Ulike objekter avgrenses av ulike typer grenser.</td>
-      <td>TypeAvgrensning<br />(kodeliste)</td>
+      <td>Type<wbr />Avgrensning<br />(kodeliste)</td>
       <td>1</td>
     </tr>
     <tr class="inherited-from">
@@ -278,7 +260,7 @@ Egenskaper
     <tr>
       <td>datafangstdato</td>
       <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
@@ -302,13 +284,13 @@ Egenskaper
     <tr>
       <td>datauttaksdato</td>
       <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>opphav</td>
       <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr class="inherited-from">
@@ -321,37 +303,37 @@ Egenskaper
       <td>1</td>
     </tr>
     <tr>
-      <td>- lokalId</td>
+      <td>- lokal<wbr />Id</td>
       <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
       <td>- navnerom</td>
       <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>- versjonId</td>
+      <td>- versjon<wbr />Id</td>
       <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>oppdateringsdato</td>
       <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>gyldigFra</td>
+      <td>gyldig<wbr />Fra</td>
       <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <td>gyldigTil</td>
+      <td>gyldig<wbr />Til</td>
       <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
@@ -371,12 +353,6 @@ abstrakt objekttype som bærer sentrale egenskaper som er anbefalt for bruk i pr
 Egenskaper
 
 <table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 22%;" />
-    <col style="width: 48%;" />
-    <col style="width: 20%;" />
-    <col style="width: 10%;" />
-  </colgroup>
   <thead>
     <tr>
       <th>Egenskap</th>
@@ -393,37 +369,37 @@ Egenskaper
       <td>1</td>
     </tr>
     <tr>
-      <td>- lokalId</td>
+      <td>- lokal<wbr />Id</td>
       <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
       <td>- navnerom</td>
       <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>- versjonId</td>
+      <td>- versjon<wbr />Id</td>
       <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>oppdateringsdato</td>
       <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>gyldigFra</td>
+      <td>gyldig<wbr />Fra</td>
       <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <td>gyldigTil</td>
+      <td>gyldig<wbr />Til</td>
       <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
@@ -438,12 +414,6 @@ abstrakt objekttype som bærer en rekke egenskaper som er fagområde-uavhengige 
 Egenskaper
 
 <table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 22%;" />
-    <col style="width: 48%;" />
-    <col style="width: 20%;" />
-    <col style="width: 10%;" />
-  </colgroup>
   <thead>
     <tr>
       <th>Egenskap</th>
@@ -456,7 +426,7 @@ Egenskaper
     <tr>
       <td>datafangstdato</td>
       <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
@@ -480,13 +450,13 @@ Egenskaper
     <tr>
       <td>datauttaksdato</td>
       <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>opphav</td>
       <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr class="inherited-from">
@@ -499,37 +469,37 @@ Egenskaper
       <td>1</td>
     </tr>
     <tr>
-      <td>- lokalId</td>
+      <td>- lokal<wbr />Id</td>
       <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
       <td>- navnerom</td>
       <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>- versjonId</td>
+      <td>- versjon<wbr />Id</td>
       <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>oppdateringsdato</td>
       <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>gyldigFra</td>
+      <td>gyldig<wbr />Fra</td>
       <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <td>gyldigTil</td>
+      <td>gyldig<wbr />Til</td>
       <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
@@ -549,12 +519,6 @@ administrativ inndeling av nasjonen på regionalt nivå<br /><br />Merknad: Tils
 Egenskaper
 
 <table class="feature-attribute-table">
-  <colgroup>
-    <col style="width: 22%;" />
-    <col style="width: 48%;" />
-    <col style="width: 20%;" />
-    <col style="width: 10%;" />
-  </colgroup>
   <thead>
     <tr>
       <th>Egenskap</th>
@@ -567,19 +531,19 @@ Egenskaper
     <tr>
       <td>område</td>
       <td>den geografiske avgrensingen av stemmekretsen.</td>
-      <td>GM_MultiSurface</td>
+      <td>GM_<wbr />Multi<wbr />Surface</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>administrativEnhetNavn</td>
+      <td>administrativ<wbr />Enhet<wbr />Navn</td>
       <td>offisielt navn på en kommune, et fylke eller en nasjon</td>
-      <td>AdministrativEnhetNavn<br />(datatype)</td>
+      <td>Administrativ<wbr />Enhet<wbr />Navn<br />(datatype)</td>
       <td>1..*</td>
     </tr>
     <tr>
       <td>- navn</td>
       <td>navnet på den administrative enheten i angitt språk.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
@@ -603,11 +567,11 @@ Egenskaper
     <tr>
       <td>fylkesnavn</td>
       <td>Offisielt navn på et fylke. Merk: Hvis fylket har flere vedtatte parallellnavn, framstår disse i en sammenhengende tekststreng.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>samiskForvaltningsområde</td>
+      <td>samisk<wbr />Forvaltningsområde</td>
       <td>angir om fylket er en del ac samisk forvaltningaområde</td>
       <td>Boolean</td>
       <td>0..1</td>
@@ -618,19 +582,19 @@ Egenskaper
     <tr>
       <td>datafangstdato</td>
       <td>dato når objektet siste gang ble registrert/observert/målt i terrenget<br /><br />Merknad: I mange tilfeller er denne forskjellig fra oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.<br />Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>datauttaksdato</td>
       <td>dato for uttak fra en database<br /><br />Merknad:<br />Skiller seg fra Kopidato ved at en ikke skiller på om det er uttak fra en originaldatabase eller en kopidatabase.</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>opphav</td>
       <td>referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde<br /><br />Merknad:<br />Kan også beskrive navn på person og årsak til oppdatering</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr class="inherited-from">
@@ -643,37 +607,37 @@ Egenskaper
       <td>1</td>
     </tr>
     <tr>
-      <td>- lokalId</td>
+      <td>- lokal<wbr />Id</td>
       <td>lokal identifikator av et objekt<br /><br />Merknad: Det er dataleverandørens ansvar å sørge for at den lokale identifikatoren er unik innenfor navnerommet.</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
       <td>- navnerom</td>
       <td>navnerom som unikt identifiserer datakilden til et objekt, anbefales å være en http-URI<br /><br />Eksempel: <a href="http://data.geonorge.no/SentraltStedsnavnsregister/1.0">http://data.geonorge.no/SentraltStedsnavnsregister/1.0</a><br /><br />Merknad : Verdien for navnerom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og må være registrert i data.geonorge.no eller data.norge.no</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>- versjonId</td>
+      <td>- versjon<wbr />Id</td>
       <td>identifikasjon av en spesiell versjon av et geografisk objekt (instans)</td>
-      <td>CharacterString</td>
+      <td>Character<wbr />String</td>
       <td>0..1</td>
     </tr>
     <tr>
       <td>oppdateringsdato</td>
       <td>tidspunkt for siste endring på objektet<br /><br />Merknad:<br />Oppdateringsdato kan være forskjellig fra datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).</td>
-      <td>DateTime</td>
+      <td>Date<wbr />Time</td>
       <td>1</td>
     </tr>
     <tr>
-      <td>gyldigFra</td>
+      <td>gyldig<wbr />Fra</td>
       <td>Tidspunktet når objektet oppstod i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
     </tr>
     <tr>
-      <td>gyldigTil</td>
+      <td>gyldig<wbr />Til</td>
       <td>Tidspunktet når objektet opphørte å eksistere i den virkelige verden</td>
       <td>Date</td>
       <td>0..1</td>
